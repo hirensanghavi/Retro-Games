@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Retro Games Form</title>
+<style>
+  .form-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+  }
+  .thank-you {
+    display: none;
+    color: green;
+    font-weight: bold;
+  }
+  body{
+  overflow: hidden;
+  height: 100vh;
+  background-image: linear-gradient(to top, rgb(1, 4, 60),rgb(18, 12, 66),rgb(23, 28, 67)) ;
+  animation: textShadow 1.6s infinite;
+  color:white;
+}
+
+</style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Retro Games Feedback</h1>
+    <form id="satisfaction-form" onsubmit="return submitForm()">
+      <label for="satisfaction">How satisfied are you with retro games?</label><br>
+      <input type="radio" id="satisfied" name="satisfaction" value="satisfied"> Satisfied<br>
+      <input type="radio" id="neutral" name="satisfaction" value="neutral"> Neutral<br>
+      <input type="radio" id="dissatisfied" name="satisfaction" value="dissatisfied"> Dissatisfied<br>
+      
+      <label for="reason">Reason for your satisfaction/dissatisfaction:</label><br>
+      <select id="reason" name="reason">
+        <option value="graphics">Graphics</option>
+        <option value="gameplay">Gameplay</option>
+        <option value="story">Story</option>
+        <option value="nostalgia">Nostalgia</option>
+        <option value="other">Other</option>
+      </select><br>
+      
+      <label for="features">Which features do you like?</label><br>
+      <input type="checkbox" id="graphics" name="features" value="graphics"> Graphics<br>
+      <input type="checkbox" id="gameplay" name="features" value="gameplay"> Gameplay<br>
+      <input type="checkbox" id="story" name="features" value="story"> Story<br>
+      <input type="checkbox" id="music" name="features" value="music"> Music<br>
+      <input type="checkbox" id="other" name="features" value="other"> Other<br>
+      
+      <button type="submit" id="submit-btn">Submit</button>
+    </form>
+    <p class="thank-you" id="thank-you">Thank you for your feedback!</p>
+  </div>
+
+  <script>
+    function submitForm() {
+      if (localStorage.getItem('formSubmitted')) {
+        document.getElementById('satisfaction-form').style.display = 'none';
+        document.getElementById('thank-you').style.display = 'block';
+        return false; // Prevent form submission
+      } else {
+        localStorage.setItem('formSubmitted', true);
+        return true; // Allow form submission
+      }
+    }
+  </script>
+</body>
+</html>
